@@ -1,7 +1,9 @@
 package br.com.fiap.tds.bean;
 
 import br.com.fiap.tds.annotation.Coluna;
+import br.com.fiap.tds.annotation.Tabela;
 
+@Tabela(nome="TAB_PEDIDO")
 public class Pedido {
 	
 	@Coluna(nome="cd_pedido")

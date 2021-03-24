@@ -1,0 +1,18 @@
+No mesmo projeto, mapear a tabela:
+
+O código será gerado pela sequence: SEQ_TAB_CLIENTE
+
+TAB_CLIENTE
+
+*cd_cliente   (PK) NUMBER
+*nm_cliente	 VARCHAR(100)
+*ds_genero	 VARCHAR -> Enum no java
+nr_cep		 VARCHAR(10)
+dt_nascimento DATE
+fl_cnh		 BLOB
+
+
+
+
+
+

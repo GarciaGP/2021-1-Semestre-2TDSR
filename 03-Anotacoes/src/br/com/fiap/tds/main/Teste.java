@@ -8,7 +8,7 @@ import br.com.fiap.tds.bean.Pedido;
 
 public class Teste {
 
-	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException {
+	public static void main(String[] args) {
 		//Instanciar um Pedido
 		Pedido pedido = new Pedido();
 		
@@ -31,9 +31,13 @@ public class Teste {
 		//Exibir o nome dos atributos
 		for (Field f : atributos) {
 			
-			//Acessar o valor do atributo
-			f.setAccessible(true);
-			System.out.println(f.get(pedido));
+			try {
+				//Acessar o valor do atributo
+				f.setAccessible(true);
+				System.out.println(f.get(pedido));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 			System.out.println(f.getName() + " " + f.getType());
 			//Obter a anotação @Coluna
