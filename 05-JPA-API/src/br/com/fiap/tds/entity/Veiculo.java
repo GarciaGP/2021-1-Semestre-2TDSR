@@ -1,5 +1,6 @@
 package br.com.fiap.tds.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PostPersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -47,6 +49,43 @@ public class Veiculo {
 	
 	@Column(name="st_novo")
 	private boolean novo;
+	
+	public Veiculo() {}
+	
+	public Veiculo(String marca, String cor, Calendar dataVenda, Combustivel combustivel, boolean novo) {
+		super();
+		this.marca = marca;
+		this.cor = cor;
+		this.dataVenda = dataVenda;
+		this.combustivel = combustivel;
+		this.novo = novo;
+	}
+	
+	public Veiculo(int codigo, String marca, String cor, Calendar dataVenda, Combustivel combustivel, boolean novo) {
+		super();
+		this.codigo = codigo;
+		this.marca = marca;
+		this.cor = cor;
+		this.dataVenda = dataVenda;
+		this.combustivel = combustivel;
+		this.novo = novo;
+	}
+
+	//CTRL + 3 -> gcuf
+	@PostPersist //Antes do persist
+	public void teste() {
+		System.out.println("Antes de cadastrar..");
+	}
+	
+	@Override
+	public String toString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		
+		return "Código: " + codigo + "\nMarca: " + marca + "\nCor: "
+				+ cor + "\nCombustível: " + combustivel + "\nNovo: " 
+				+ novo + "\nData Venda: " + sdf.format(dataVenda.getTime())
+				+ "\nData Cadastro: " + sdf.format(dataCadastro.getTime());
+	}
 
 	public int getCodigo() {
 		return codigo;
