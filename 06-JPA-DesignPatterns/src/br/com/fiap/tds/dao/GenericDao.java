@@ -16,4 +16,5 @@ public interface GenericDao<E, K> {
 	void delete(K id) throws EntityNotFoundException;
 	
 	void commit() throws CommitException;
+	
 }
