@@ -2,11 +2,15 @@ package br.com.fiap.tds.entity;
 
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,6 +38,21 @@ public class ProjetoChallenge {
 	
 	@Column(name="ds_setor", length = 100)
 	private String setor;
+	
+	//Mapear o relacionamento um-para-um
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="cd_grupo", nullable = false, unique = true)
+	private GrupoChallenge grupo;
+	
+	public ProjetoChallenge() {}
+
+	public ProjetoChallenge(String nome, Calendar dataEntrega, Float nota, String setor, GrupoChallenge grupo) {
+		this.nome = nome;
+		this.dataEntrega = dataEntrega;
+		this.nota = nota;
+		this.setor = setor;
+		this.grupo = grupo;
+	}
 
 	public int getCodigo() {
 		return codigo;
@@ -73,6 +92,14 @@ public class ProjetoChallenge {
 
 	public void setSetor(String setor) {
 		this.setor = setor;
+	}
+
+	public GrupoChallenge getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(GrupoChallenge grupo) {
+		this.grupo = grupo;
 	}
 	
 }

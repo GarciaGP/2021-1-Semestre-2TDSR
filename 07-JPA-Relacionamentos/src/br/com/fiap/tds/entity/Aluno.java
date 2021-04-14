@@ -9,6 +9,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,7 +36,20 @@ public class Aluno {
 	@Enumerated(EnumType.STRING)
 	@Column(name="ds_genero", nullable = false)
 	private Genero genero;
-
+	
+	//Mapeamento do relacionamento muitos-para-um 
+	@ManyToOne
+	@JoinColumn(name="cd_grupo", nullable = false)
+	private GrupoChallenge grupo;
+	
+	public Aluno(){}
+	
+	public Aluno(String nome, Calendar dataNascimento, Genero genero) {
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.genero = genero;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -65,6 +80,14 @@ public class Aluno {
 
 	public void setRm(int rm) {
 		this.rm = rm;
+	}
+
+	public GrupoChallenge getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(GrupoChallenge grupo) {
+		this.grupo = grupo;
 	}
 	
 }

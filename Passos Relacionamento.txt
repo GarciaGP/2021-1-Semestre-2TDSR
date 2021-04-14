@@ -1,0 +1,23 @@
+
+Um-para-um:
+	1 - Unidirecional
+	- Ir na classe que mapeia a FK no banco
+	- Adicionar o atributo que referencia a classe do relacionamento e adicionar a anotação @OneToOne
+	- (opcional) @JoinColumn para configurar o campo da FK no banco
+	
+	2 - Bidirecional
+	- Ir na classe que não mapeia a FK no banco
+	- Adicionar o atributo que referencia a classe do relacionamennto,
+	- Adicionar a anotação @OneToOne com o mappedBy (nome do atributo criado no passo 1)
+	
+	
+Muitos-para-um:
+	1 - Unidirecional
+	- Ir na classe que mapeia a FK no banco
+	- Adicionar o atributo que referencia a classe do relacionamento e adicionar a anotação @ManyToOne
+	- (opcional) @JoinColumn para configurar o campo da FK no banco
+	
+	2 - Bidirecional
+	- Ir na classe que não mapeia a FK no banco
+	- Adicionar o atributo (List) que referencia a classe do relacionamennto,
+	- Adicionar a anotação @OneToOMany com o mappedBy (nome do atributo criado no passo 1)
