@@ -35,10 +35,10 @@ public class GrupoChallenge {
 	private ProjetoChallenge projeto;
 	
 	//Mapear o relacionamento um-para-muitos bidirecional
-	@OneToMany(mappedBy = "grupo")
+	@OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE } )
 	private List<Aluno> alunos;
 	
-	//Método auxiliar para adicionar um aluno no grupo, para garantir o preenchimento da FK no banco
+	//Método auxiliar utilizado para adicionar um aluno no grupo, para garantir o preenchimento da FK no banco
 	//Utilizado para cadastrar em cascata (cadastra o grupo e o grupo cadastra os alunos)
 	public void addAluno(Aluno aluno) {
 		if (alunos == null)

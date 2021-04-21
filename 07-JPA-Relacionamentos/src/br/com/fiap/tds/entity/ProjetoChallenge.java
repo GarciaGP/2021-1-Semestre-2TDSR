@@ -40,7 +40,7 @@ public class ProjetoChallenge {
 	private String setor;
 	
 	//Mapear o relacionamento um-para-um
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name="cd_grupo", nullable = false, unique = true)
 	private GrupoChallenge grupo;
 	
