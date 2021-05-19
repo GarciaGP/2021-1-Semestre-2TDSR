@@ -10,10 +10,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+@NamedQueries({
+	//Pesquisar reserva por parte do nome do cliente
+	@NamedQuery(name="Reserva.PorNomeCliente", 
+		query ="select r from Reserva r where r.cliente.nome like :pNome"),	
+	//Pesquisar reserva por preço do pacote entre dois valores
+	@NamedQuery(name="Reserva.PorPrecoPacote",
+		query = "select r from Reserva r where r.pacote.preco between :p1 and :p2")
+})
 
 @Entity
 @Table(name="TB_EAD_RESERVA")
